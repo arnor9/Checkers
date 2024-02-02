@@ -7,7 +7,10 @@ import java.util.Scanner;
 public class Main {
     static int s = 8;
     static String[][] board = new String[s][s];
+    static int counter = 0;
     Draw d = new Draw();
+    Game g = new Game();
+    static String whoesmove = "1";
 
     public static void startboard(){
 
@@ -31,20 +34,9 @@ public class Main {
 
     public static void main(String[] args) {
         startboard();
-        int counter = 0;
-        while (board.length > 7 /*þetta er bara eh bull*/){
-            counter++;
-            if(counter % 2 == 0) {
-                System.out.println("Turn of player no. 1");
-                System.out.println("Coordinate of piece to move");
-            }else {
-                System.out.println("Turn of player no. 2");
-                System.out.println("Coordinate of piece to move");
-            }
-            Scanner scanner = new Scanner(System.in);
+        Game.who(counter, whoesmove);
+        counter++;
 
-
-        }
 
 
     }
