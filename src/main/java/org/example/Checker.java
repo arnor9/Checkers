@@ -1,15 +1,14 @@
 package org.example;
 
-import java.util.Scanner;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Checker {
     static int s = 8;
     static String[][] board = new String[s][s];
-    static int counter = 0;
     Draw d = new Draw();
     Game g = new Game();
+    static int one = 12;
+    static int two = 12;
     static String whoesmove = "1";
 
     public static void startboard(){
@@ -31,11 +30,26 @@ public class Main {
         }
         Draw.print(board);
     }
+    public static boolean gameOver() {
+        return (one == 0 || two == 0);
+    }
+
+    public static String Winner(){
+        if (one == 0){
+            return "The winner is player number 1!";
+        }else {
+            return "The winner is player number 2!";
+        }
+
+    }
 
     public static void main(String[] args) {
         startboard();
-        Game.who(counter, whoesmove);
-        counter++;
+        while(!gameOver()){
+            Game.who(whoesmove);
+            Draw.print(board);
+        }
+        System.out.println(Winner());
 
 
 
