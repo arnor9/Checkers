@@ -9,7 +9,6 @@ public class Checker {
     Game g = new Game();
     static int one = 12;
     static int two = 12;
-    static String whoesmove = "1";
 
     public static void startboard(){
 
@@ -44,14 +43,13 @@ public class Checker {
     }
 
     public static void main(String[] args) {
+        String whoesmove = "1";
         startboard();
         while(!gameOver()){
-            Game.who(whoesmove);
+            Game.move(whoesmove);
             Draw.print(board);
+            whoesmove = Game.who(whoesmove);
         }
         System.out.println(Winner());
-
-
-
     }
 }
