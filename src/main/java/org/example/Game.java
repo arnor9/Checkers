@@ -25,9 +25,9 @@ public class Game {
             System.out.print("Y: ");
             int moveToY = s.nextInt();
 
-            updateArray(moveFromX,moveFromY,moveToX,moveToY,whoesmove);
 
-            if(validMove(moveFromX, moveFromY,moveToX,moveToY)){
+            if(validMove(moveFromX, moveFromY,moveToX,moveToY, whoesmove)){
+                updateArray(moveFromX,moveFromY,moveToX,moveToY,whoesmove);
                 moved = true;
             }else {
                 System.out.println("Not a valid move, try again");
@@ -45,10 +45,34 @@ public class Game {
         return whoesmove.equals("1") ? "2" : "1";
     }
 
-    public static boolean validMove(int moveFromX, int moveFromY, int moveToX, int moveToY){
-        return true;
+    public static boolean validMove(int moveFromX, int moveFromY, int moveToX, int moveToY, String whosemove){
+        if (moveFromX < 0 || moveFromX > 7 || moveFromY < 0 || moveFromY > 7 ||
+                moveToX < 0 || moveToX > 7 || moveToY < 0 || moveToY > 7)
+            return false;
+
+        else if (Checker.board[moveFromX][moveFromY].equals(whosemove) && Checker.board[moveToX][moveToY].equals(" ")) {
+
+            if (Math.abs(moveFromX-moveToX)==1) {
+                if ((whosemove.equals("1")) && (moveToY - moveFromY == 1))
+                    return true;
+                else if ((whosemove.equals("2")) && (moveToY - moveFromY == -1))
+                    return true;
+            }
+
+            // Checks case of a jump
+            else if (Math.abs(moveFromX-moveToX)==2) {
+                if (whosemove.equals("1") && (moveToY - moveFromY == 2) &&
+                        Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2].equals("1"))
+                    return true;
+                else if (whosemove.equals("2") && (moveToY - moveFromY == -2) &&
+                        Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2].equals("2"))
+                    return true;
+            }
+        }
+        return false;
     }
 }
+
 
 
 
