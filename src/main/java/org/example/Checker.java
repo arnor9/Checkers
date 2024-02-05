@@ -3,10 +3,10 @@ package org.example;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Checker {
-    static int s = 8;
+    private final static int s = 8;
     static String[][] board = new String[s][s];
-    Draw d = new Draw();
-    Game g = new Game();
+    //Draw d = new Draw();
+    //Game g = new Game();
     static int one = 12;
     static int two = 12;
 
@@ -35,9 +35,9 @@ public class Checker {
 
     public static String Winner(){
         if (one == 0){
-            return "The winner is player number 1!";
-        }else {
             return "The winner is player number 2!";
+        }else {
+            return "The winner is player number 1!";
         }
 
     }

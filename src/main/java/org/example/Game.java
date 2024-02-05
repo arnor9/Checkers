@@ -38,6 +38,14 @@ public class Game {
     public static void updateArray(int moveFromX, int moveFromY, int moveToX, int moveToY, String whoesmove){
         Checker.board[moveFromX][moveFromY] = " ";
         Checker.board[moveToX][moveToY] = whoesmove;
+
+        if (Math.abs(moveToX - moveFromX) == 2) {
+            Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2] = " ";
+            if (whoesmove.equals("1"))
+                Checker.one--;
+            else
+                Checker.two--;
+        }
         System.out.println("Piece moved!");
     }
 
@@ -58,14 +66,12 @@ public class Game {
                 else if ((whosemove.equals("2")) && (moveToY - moveFromY == -1))
                     return true;
             }
-
-            // Checks case of a jump
             else if (Math.abs(moveFromX-moveToX)==2) {
                 if (whosemove.equals("1") && (moveToY - moveFromY == 2) &&
-                        Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2].equals("1"))
+                        Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2].equals("2"))
                     return true;
                 else if (whosemove.equals("2") && (moveToY - moveFromY == -2) &&
-                        Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2].equals("2"))
+                        Checker.board[(moveFromX+moveToX)/2][(moveFromY+moveToY)/2].equals("1"))
                     return true;
             }
         }
